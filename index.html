@@ -1,542 +1,514 @@
 <!DOCTYPE html>
-<!-- saved from url=(0063)https://adityasinha-1988.github.io/pblcse/pbl_ppt_template.html -->
-<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PBL Presentation | 2026</title>
+    <title>AutoDS Terminal v2.0 | PBL 2026</title>
     <script src="https://cdn.tailwindcss.com/"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap');
         body { background-color: #020617; color: #f8fafc; font-family: 'Plus Jakarta Sans', sans-serif; scroll-behavior: smooth; }
-        .glass { background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(15px); border: 1px solid rgba(255, 255, 255, 0.1); }
+        .glass { background: rgba(255,255,255,0.03); backdrop-filter: blur(15px); border: 1px solid rgba(255,255,255,0.1); }
         .gradient-text { background: linear-gradient(90deg, #60a5fa, #a855f7); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-        
-        /* TIMER UI - FIXED CONTRAST */
         #timerContainer { background: #ffffff; color: #020617; box-shadow: 0 10px 40px rgba(0,0,0,0.8); border: 3px solid #3b82f6; z-index: 1000; }
-        @keyframes flicker { 0%, 100% { background-color: #ffffff; } 50% { background-color: #fca5a5; } }
+        @keyframes flicker { 0%,100%{background-color:#ffffff} 50%{background-color:#fca5a5} }
         .timer-warning { animation: flicker 1s infinite; border: 3px solid #ef4444 !important; color: #b91c1c !important; }
         .timer-stop { background-color: #991b1b !important; color: #ffffff !important; border: 3px solid #f87171 !important; animation: none; }
     </style>
-<style>*, ::before, ::after{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgb(59 130 246 / 0.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }::backdrop{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgb(59 130 246 / 0.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }/* ! tailwindcss v3.4.17 | MIT License | https://tailwindcss.com */*,::after,::before{box-sizing:border-box;border-width:0;border-style:solid;border-color:#e5e7eb}::after,::before{--tw-content:''}:host,html{line-height:1.5;-webkit-text-size-adjust:100%;-moz-tab-size:4;tab-size:4;font-family:ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";font-feature-settings:normal;font-variation-settings:normal;-webkit-tap-highlight-color:transparent}body{margin:0;line-height:inherit}hr{height:0;color:inherit;border-top-width:1px}abbr:where([title]){-webkit-text-decoration:underline dotted;text-decoration:underline dotted}h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight:inherit}a{color:inherit;text-decoration:inherit}b,strong{font-weight:bolder}code,kbd,pre,samp{font-family:ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;font-feature-settings:normal;font-variation-settings:normal;font-size:1em}small{font-size:80%}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sub{bottom:-.25em}sup{top:-.5em}table{text-indent:0;border-color:inherit;border-collapse:collapse}button,input,optgroup,select,textarea{font-family:inherit;font-feature-settings:inherit;font-variation-settings:inherit;font-size:100%;font-weight:inherit;line-height:inherit;letter-spacing:inherit;color:inherit;margin:0;padding:0}button,select{text-transform:none}button,input:where([type=button]),input:where([type=reset]),input:where([type=submit]){-webkit-appearance:button;background-color:transparent;background-image:none}:-moz-focusring{outline:auto}:-moz-ui-invalid{box-shadow:none}progress{vertical-align:baseline}::-webkit-inner-spin-button,::-webkit-outer-spin-button{height:auto}[type=search]{-webkit-appearance:textfield;outline-offset:-2px}::-webkit-search-decoration{-webkit-appearance:none}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}summary{display:list-item}blockquote,dd,dl,figure,h1,h2,h3,h4,h5,h6,hr,p,pre{margin:0}fieldset{margin:0;padding:0}legend{padding:0}menu,ol,ul{list-style:none;margin:0;padding:0}dialog{padding:0}textarea{resize:vertical}input::placeholder,textarea::placeholder{opacity:1;color:#9ca3af}[role=button],button{cursor:pointer}:disabled{cursor:default}audio,canvas,embed,iframe,img,object,svg,video{display:block;vertical-align:middle}img,video{max-width:100%;height:auto}[hidden]:where(:not([hidden=until-found])){display:none}.fixed{position:fixed}.bottom-10{bottom:2.5rem}.right-10{right:2.5rem}.z-50{z-index:50}.mx-auto{margin-left:auto;margin-right:auto}.mb-12{margin-bottom:3rem}.mb-2{margin-bottom:0.5rem}.mb-4{margin-bottom:1rem}.mb-6{margin-bottom:1.5rem}.mb-8{margin-bottom:2rem}.mt-1{margin-top:0.25rem}.inline-block{display:inline-block}.flex{display:flex}.grid{display:grid}.hidden{display:none}.h-80{height:20rem}.h-full{height:100%}.w-auto{width:auto}.w-full{width:100%}.max-w-2xl{max-width:42rem}.max-w-6xl{max-width:72rem}.flex-col{flex-direction:column}.flex-wrap{flex-wrap:wrap}.items-center{align-items:center}.items-stretch{align-items:stretch}.justify-center{justify-content:center}.justify-between{justify-content:space-between}.gap-10{gap:2.5rem}.gap-12{gap:3rem}.gap-16{gap:4rem}.gap-4{gap:1rem}.gap-8{gap:2rem}.space-y-12 > :not([hidden]) ~ :not([hidden]){--tw-space-y-reverse:0;margin-top:calc(3rem * calc(1 - var(--tw-space-y-reverse)));margin-bottom:calc(3rem * var(--tw-space-y-reverse))}.space-y-32 > :not([hidden]) ~ :not([hidden]){--tw-space-y-reverse:0;margin-top:calc(8rem * calc(1 - var(--tw-space-y-reverse)));margin-bottom:calc(8rem * var(--tw-space-y-reverse))}.space-y-6 > :not([hidden]) ~ :not([hidden]){--tw-space-y-reverse:0;margin-top:calc(1.5rem * calc(1 - var(--tw-space-y-reverse)));margin-bottom:calc(1.5rem * var(--tw-space-y-reverse))}.rounded{border-radius:0.25rem}.rounded-2xl{border-radius:1rem}.rounded-3xl{border-radius:1.5rem}.rounded-\[2\.5rem\]{border-radius:2.5rem}.rounded-\[2rem\]{border-radius:2rem}.rounded-\[3\.5rem\]{border-radius:3.5rem}.rounded-full{border-radius:9999px}.border{border-width:1px}.border-2{border-width:2px}.border-b{border-bottom-width:1px}.border-b-4{border-bottom-width:4px}.border-l-2{border-left-width:2px}.border-l-4{border-left-width:4px}.border-r-4{border-right-width:4px}.border-t{border-top-width:1px}.border-t-4{border-top-width:4px}.border-blue-500{--tw-border-opacity:1;border-color:rgb(59 130 246 / var(--tw-border-opacity, 1))}.border-blue-500\/30{border-color:rgb(59 130 246 / 0.3)}.border-blue-500\/50{border-color:rgb(59 130 246 / 0.5)}.border-blue-600{--tw-border-opacity:1;border-color:rgb(37 99 235 / var(--tw-border-opacity, 1))}.border-green-500\/20{border-color:rgb(34 197 94 / 0.2)}.border-purple-500\/50{border-color:rgb(168 85 247 / 0.5)}.border-slate-700{--tw-border-opacity:1;border-color:rgb(51 65 85 / var(--tw-border-opacity, 1))}.border-slate-800{--tw-border-opacity:1;border-color:rgb(30 41 59 / var(--tw-border-opacity, 1))}.border-slate-800\/50{border-color:rgb(30 41 59 / 0.5)}.border-slate-900{--tw-border-opacity:1;border-color:rgb(15 23 42 / var(--tw-border-opacity, 1))}.border-white\/10{border-color:rgb(255 255 255 / 0.1)}.bg-black\/40{background-color:rgb(0 0 0 / 0.4)}.bg-green-500\/5{background-color:rgb(34 197 94 / 0.05)}.bg-green-600{--tw-bg-opacity:1;background-color:rgb(22 163 74 / var(--tw-bg-opacity, 1))}.bg-white{--tw-bg-opacity:1;background-color:rgb(255 255 255 / var(--tw-bg-opacity, 1))}.bg-white\/5{background-color:rgb(255 255 255 / 0.05)}.object-contain{object-fit:contain}.p-1{padding:0.25rem}.p-10{padding:2.5rem}.p-12{padding:3rem}.p-6{padding:1.5rem}.p-7{padding:1.75rem}.p-8{padding:2rem}.px-12{padding-left:3rem;padding-right:3rem}.px-4{padding-left:1rem;padding-right:1rem}.px-6{padding-left:1.5rem;padding-right:1.5rem}.px-8{padding-left:2rem;padding-right:2rem}.py-1{padding-top:0.25rem;padding-bottom:0.25rem}.py-12{padding-top:3rem;padding-bottom:3rem}.py-2{padding-top:0.5rem;padding-bottom:0.5rem}.py-4{padding-top:1rem;padding-bottom:1rem}.py-8{padding-top:2rem;padding-bottom:2rem}.pb-32{padding-bottom:8rem}.pl-6{padding-left:1.5rem}.pt-10{padding-top:2.5rem}.pt-48{padding-top:12rem}.text-left{text-align:left}.text-center{text-align:center}.text-justify{text-align:justify}.font-mono{font-family:ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace}.text-2xl{font-size:1.5rem;line-height:2rem}.text-3xl{font-size:1.875rem;line-height:2.25rem}.text-4xl{font-size:2.25rem;line-height:2.5rem}.text-6xl{font-size:3.75rem;line-height:1}.text-\[10px\]{font-size:10px}.text-\[11px\]{font-size:11px}.text-\[9px\]{font-size:9px}.text-lg{font-size:1.125rem;line-height:1.75rem}.text-sm{font-size:0.875rem;line-height:1.25rem}.text-xl{font-size:1.25rem;line-height:1.75rem}.text-xs{font-size:0.75rem;line-height:1rem}.font-black{font-weight:900}.font-bold{font-weight:700}.font-extrabold{font-weight:800}.font-medium{font-weight:500}.uppercase{text-transform:uppercase}.italic{font-style:italic}.leading-none{line-height:1}.leading-relaxed{line-height:1.625}.leading-tight{line-height:1.25}.tracking-\[0\.2em\]{letter-spacing:0.2em}.tracking-\[0\.3em\]{letter-spacing:0.3em}.tracking-\[0\.5em\]{letter-spacing:0.5em}.tracking-tight{letter-spacing:-0.025em}.tracking-tighter{letter-spacing:-0.05em}.tracking-widest{letter-spacing:0.1em}.text-blue-400{--tw-text-opacity:1;color:rgb(96 165 250 / var(--tw-text-opacity, 1))}.text-blue-500{--tw-text-opacity:1;color:rgb(59 130 246 / var(--tw-text-opacity, 1))}.text-blue-600{--tw-text-opacity:1;color:rgb(37 99 235 / var(--tw-text-opacity, 1))}.text-green-400{--tw-text-opacity:1;color:rgb(74 222 128 / var(--tw-text-opacity, 1))}.text-green-500{--tw-text-opacity:1;color:rgb(34 197 94 / var(--tw-text-opacity, 1))}.text-purple-400{--tw-text-opacity:1;color:rgb(192 132 252 / var(--tw-text-opacity, 1))}.text-purple-500{--tw-text-opacity:1;color:rgb(168 85 247 / var(--tw-text-opacity, 1))}.text-slate-100{--tw-text-opacity:1;color:rgb(241 245 249 / var(--tw-text-opacity, 1))}.text-slate-400{--tw-text-opacity:1;color:rgb(148 163 184 / var(--tw-text-opacity, 1))}.text-slate-500{--tw-text-opacity:1;color:rgb(100 116 139 / var(--tw-text-opacity, 1))}.text-slate-600{--tw-text-opacity:1;color:rgb(71 85 105 / var(--tw-text-opacity, 1))}.text-white{--tw-text-opacity:1;color:rgb(255 255 255 / var(--tw-text-opacity, 1))}.opacity-50{opacity:0.5}.opacity-70{opacity:0.7}.shadow-inner{--tw-shadow:inset 0 2px 4px 0 rgb(0 0 0 / 0.05);--tw-shadow-colored:inset 0 2px 4px 0 var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)}.shadow-lg{--tw-shadow:0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);--tw-shadow-colored:0 10px 15px -3px var(--tw-shadow-color), 0 4px 6px -4px var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)}.shadow-md{--tw-shadow:0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);--tw-shadow-colored:0 4px 6px -1px var(--tw-shadow-color), 0 2px 4px -2px var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)}.shadow-green-900\/40{--tw-shadow-color:rgb(20 83 45 / 0.4);--tw-shadow:var(--tw-shadow-colored)}.transition{transition-property:color, background-color, border-color, fill, stroke, opacity, box-shadow, transform, filter, -webkit-text-decoration-color, -webkit-backdrop-filter;transition-property:color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter;transition-property:color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter, -webkit-text-decoration-color, -webkit-backdrop-filter;transition-timing-function:cubic-bezier(0.4, 0, 0.2, 1);transition-duration:150ms}.transition-all{transition-property:all;transition-timing-function:cubic-bezier(0.4, 0, 0.2, 1);transition-duration:150ms}.hover\:bg-green-500:hover{--tw-bg-opacity:1;background-color:rgb(34 197 94 / var(--tw-bg-opacity, 1))}.hover\:text-blue-400:hover{--tw-text-opacity:1;color:rgb(96 165 250 / var(--tw-text-opacity, 1))}@media (min-width: 768px){.md\:flex{display:flex}.md\:grid-cols-2{grid-template-columns:repeat(2, minmax(0, 1fr))}.md\:grid-cols-3{grid-template-columns:repeat(3, minmax(0, 1fr))}.md\:text-7xl{font-size:4.5rem;line-height:1}}</style></head>
+</head>
 <body onload="startTimer()">
 
-    <div id="timerContainer" class="fixed bottom-10 right-10 px-8 py-4 rounded-3xl flex items-center gap-4 transition-all">
+    <!-- TIMER -->
+    <div id="timerContainer" class="fixed bottom-10 right-10 px-8 py-4 rounded-3xl flex items-center gap-4 transition-all" style="z-index:1000">
         <i class="fas fa-hourglass-start text-blue-600 text-2xl" id="timerIcon"></i>
-        <span id="displayTime" class="text-4xl font-black font-mono tracking-tighter">00:00</span>
+        <span id="displayTime" class="text-4xl font-black font-mono" style="letter-spacing:-0.05em">00:00</span>
     </div>
 
-    <nav class="fixed w-full z-50 glass border-b border-slate-800/50 px-8 py-4 flex justify-between items-center">
+    <!-- NAV -->
+    <nav class="fixed w-full glass border-b border-slate-800 px-8 py-4 flex justify-between items-center" style="z-index:50">
         <div class="flex items-center gap-4">
-            <div class="w-auto h-full flex items-center">
-                <img src="mujlogo (1).jpg" alt="MUJ" class="h-full w-auto object-contain" style="max-height: 50px;">
-            </div>
             <div class="flex flex-col text-left">
-                <span class="text-xl font-black text-white leading-none uppercase tracking-tighter">PBL <span class="text-blue-500 italic">2026</span></span>
-                <span class="text-[9px] text-slate-400 font-bold uppercase tracking-widest mt-1">Dept. of Computer Science &amp; Engineering</span>
+                <span class="text-xl font-black text-white leading-none uppercase" style="letter-spacing:-0.05em">PBL <span class="text-blue-500" style="font-style:italic">2026</span></span>
+                <span class="text-slate-400 font-bold uppercase mt-1" style="font-size:9px;letter-spacing:0.1em">Dept. of Computer Science &amp; Engineering</span>
             </div>
         </div>
-        <div class="hidden md:flex gap-8 text-[11px] uppercase tracking-widest font-bold opacity-70">
+        <div class="hidden md:flex gap-8 text-slate-400 font-bold uppercase opacity-70" style="font-size:11px;letter-spacing:0.1em">
             <a href="#problem" class="hover:text-blue-400 transition">Problem</a>
             <a href="#methodology" class="hover:text-blue-400 transition">Methodology</a>
             <a href="#architecture" class="hover:text-blue-400 transition">Architecture</a>
-            <a href="#tools" class="hover:text-blue-400 transition">Tools</a>
+            <a href="#features" class="hover:text-blue-400 transition">Features</a>
             <a href="#timeline" class="hover:text-blue-400 transition">Progress</a>
             <a href="#team" class="hover:text-blue-400 transition">Team</a>
         </div>
     </nav>
 
-    <main class="max-w-6xl mx-auto px-6 pt-48 pb-32 space-y-32">
-        
+    <main class="max-w-6xl mx-auto px-6 pb-32" style="padding-top:12rem">
+        <div style="display:flex;flex-direction:column;gap:8rem">
+
+        <!-- HERO -->
         <section class="text-center">
-            <div class="inline-block px-4 py-1 border border-slate-800 rounded-full text-slate-500 text-[10px] font-mono mb-6 uppercase tracking-widest">ID: 23FE10CSE00115</div>
-            <h1 class="text-6xl md:text-7xl font-extrabold mb-8 uppercase leading-tight"><span class="gradient-text uppercase">AutoDS</span></h1>
-            <p class="text-slate-400 max-w-2xl mx-auto italic text-lg leading-relaxed border-l-2 border-blue-500/30 pl-6 text-left">
-                "A local-first AI data science assistant that converts natural language analysis requests into controlled, executable data-science workflows using an MCP-style tool server."
+            <div class="inline-block px-4 py-1 border border-slate-800 rounded-full text-slate-500 font-mono mb-6 uppercase" style="font-size:10px;letter-spacing:0.1em">B.Tech Minor Project — 2026</div>
+            <h1 class="font-extrabold mb-8 uppercase leading-tight" style="font-size:clamp(3rem,8vw,5rem)">
+                <span class="gradient-text">AutoDS</span> <span class="text-white" style="font-size:clamp(1.5rem,4vw,2.5rem);display:block;margin-top:0.25rem">Terminal v2.0</span>
+            </h1>
+            <p class="text-slate-400 max-w-2xl mx-auto italic text-lg leading-relaxed border-l-2 border-blue-500 pl-6 text-left" style="border-color:rgba(59,130,246,0.3)">
+                "A Bloomberg-inspired, local-first AI data intelligence terminal — drop in any CSV and get complete analysis, drift detection, ML training, and autonomous AI insights. High performance."
             </p>
         </section>
 
+        <!-- PROBLEM -->
         <section id="problem" class="grid md:grid-cols-2 gap-12 items-stretch">
-            <div class="glass p-10 rounded-[2.5rem] flex flex-col justify-center border-l-4 border-blue-600">
+            <div class="glass p-10 rounded-3xl flex flex-col justify-center border-l-4 border-blue-600" style="border-radius:2.5rem">
                 <h2 class="text-3xl font-extrabold mb-6">Problem Statement</h2>
-                <p class="text-slate-400 leading-relaxed text-justify">Data scientists spend hours writing repetitive analysis code. Users want to ask questions like "show me correlations" or "train a model" but need technical skills to write Python scripts. There's no easy way for non-technical users to perform data analysis without learning programming.</p>
+                <p class="text-slate-400 leading-relaxed text-justify">
+                    Imagine you get a new dataset. Before any real work begins, you spend hours just <em>understanding</em> it — writing code to check for missing values, plotting distributions, testing correlations. Then if you train a model and it fails, you debug that manually too. AutoDS eliminates all of that repetitive groundwork in one terminal.
+                </p>
             </div>
-            <div class="space-y-6">
-                <div class="glass p-7 rounded-3xl border-r-4 border-blue-500/50">
-                    <h3 class="text-blue-400 font-bold text-xs uppercase tracking-widest mb-2">Literature Review / Market Research</h3>
-                    <p class="text-sm text-slate-500 italic">Tools like AutoML (Google AutoML, H2O) are cloud-based and expensive. Jupyter notebooks require coding skills. ChatGPT can explain analysis but can't actually execute it on your data. No local solution exists that combines natural language with actual data analysis execution.</p>
+            <div style="display:flex;flex-direction:column;gap:1.5rem">
+                <div class="glass p-7 rounded-3xl border-r-4 border-blue-500" style="border-color:rgba(59,130,246,0.5)">
+                    <h3 class="text-blue-400 font-bold text-xs uppercase mb-2" style="letter-spacing:0.1em">Literature Review / Market Gap</h3>
+                    <p class="text-sm text-slate-500 italic">Tools like Google AutoML require cloud access and billing. Jupyter is powerful but manual. pandas-profiling gives static reports with no AI reasoning. No existing local tool combines autonomous AI agents, data contract enforcement, drift detection, and model failure debugging in one interface.</p>
                 </div>
-                <div class="glass p-7 rounded-3xl border-r-4 border-purple-500/50">
-                    <h3 class="text-purple-400 font-bold text-xs uppercase tracking-widest mb-2">Research Gap / Innovation</h3>
-                    <p class="text-sm text-slate-500 italic">AutoDS runs completely locally using Ollama (no cloud needed). It separates AI decision-making from actual execution using MCP architecture. User talks to AI in plain English, AI decides what to do, MCP server safely executes data analysis. This makes data science accessible to everyone.</p>
+                <div class="glass p-7 rounded-3xl border-r-4 border-purple-500" style="border-color:rgba(168,85,247,0.5)">
+                    <h3 class="text-purple-400 font-bold text-xs uppercase mb-2" style="letter-spacing:0.1em">Research Innovation</h3>
+                    <p class="text-sm text-slate-500 italic">AutoDS uses an MCP-style tool server architecture — the AI agent (Qwen2.5-Coder via NVIDIA API) reasons and plans, while a separate Python tool layer safely executes real analysis. This strict separation makes the system auditable, extensible, and production-safe.</p>
                 </div>
             </div>
         </section>
 
-        <section id="methodology" class="space-y-12">
-            <h2 class="text-4xl font-black text-center uppercase tracking-tight">System <span class="text-blue-500">Methodology</span></h2>
+        <!-- METHODOLOGY -->
+        <section id="methodology" style="display:flex;flex-direction:column;gap:3rem">
+            <h2 class="text-4xl font-black text-center uppercase" style="letter-spacing:-0.025em">System <span class="text-blue-500">Methodology</span></h2>
             <div class="grid md:grid-cols-3 gap-8">
                 <div class="glass p-8 rounded-3xl text-center">
                     <i class="fas fa-database text-blue-500 text-3xl mb-4"></i>
-                    <h3 class="font-bold mb-2 uppercase text-xs tracking-widest">Dataset / Input</h3>
-                    <p class="text-sm text-slate-500">Users upload CSV datasets through simple interface. Natural language requests like "analyze this data" or "show correlations". System accepts standard tabular data formats.</p>
+                    <h3 class="font-bold mb-2 uppercase text-xs" style="letter-spacing:0.1em">Input</h3>
+                    <p class="text-sm text-slate-500">Upload any CSV via drag-and-drop or paste an absolute file path. Clean, simple ingestion with no setup required.</p>
                 </div>
                 <div class="glass p-8 rounded-3xl text-center">
                     <i class="fas fa-microchip text-purple-500 text-3xl mb-4"></i>
-                    <h3 class="font-bold mb-2 uppercase text-xs tracking-widest">Model / Architecture</h3>
-                    <p class="text-sm text-slate-500">Three layers: UI Layer (Streamlit/CLI), AI Agent (Ollama for understanding), MCP Server (pandas, sklearn, matplotlib for execution). Each layer has one job and works independently.</p>
+                    <h3 class="font-bold mb-2 uppercase text-xs" style="letter-spacing:0.1em">Architecture</h3>
+                    <p class="text-sm text-slate-500">Four-layer pipeline: React Terminal UI → FastAPI REST/WebSocket → NVIDIA Qwen2.5 agent → MCP Python tool registry. Each layer has one job and communicates cleanly.</p>
                 </div>
-                <div class="glass p-8 rounded-3xl text-center border-2 border-green-500/20 bg-green-500/5">
-                    <i class="fab fa-python text-green-500 text-3xl mb-4"></i>
-                    <h3 class="font-bold mb-4 uppercase text-xs tracking-widest text-green-400">Live Execution</h3>
-                    <a href="https://adityasinha-1988.github.io/pblcse/[LINK]" target="_blank" class="px-6 py-2 bg-green-600 rounded-full text-[10px] font-black hover:bg-green-500 transition shadow-lg shadow-green-900/40">VIEW CODE / DEMO</a>
-                </div>
-            </div>
-        </section>
-
-        <section id="architecture" class="space-y-12">
-            <h2 class="text-4xl font-black text-center uppercase tracking-tight">System <span class="text-blue-500">Architecture</span></h2>
-            <div class="grid md:grid-cols-3 gap-8">
-                <div class="glass p-8 rounded-3xl text-center border-l-4 border-blue-500">
-                    <i class="fas fa-desktop text-blue-500 text-3xl mb-4"></i>
-                    <h3 class="font-bold mb-2 uppercase text-xs tracking-widest">UI Layer</h3>
-                    <p class="text-sm text-slate-500">Simple interface (CLI or Streamlit) where users upload datasets and ask questions in plain English</p>
-                </div>
-                <div class="glass p-8 rounded-3xl text-center border-l-4 border-purple-500">
-                    <i class="fas fa-brain text-purple-500 text-3xl mb-4"></i>
-                    <h3 class="font-bold mb-2 uppercase text-xs tracking-widest">AI Agent (Ollama)</h3>
-                    <p class="text-sm text-slate-500">Understands what user wants, decides which analysis tool to use, sends commands to MCP server</p>
-                </div>
-                <div class="glass p-8 rounded-3xl text-center border-l-4 border-green-500">
-                    <i class="fas fa-server text-green-500 text-3xl mb-4"></i>
-                    <h3 class="font-bold mb-2 uppercase text-xs tracking-widest">MCP Server</h3>
-                    <p class="text-sm text-slate-500">Executes actual data analysis using pandas, matplotlib, scikit-learn. Returns results safely</p>
+                <div class="glass p-8 rounded-3xl text-center" style="border: 2px solid rgba(34,197,94,0.2); background:rgba(34,197,94,0.05)">
+                    <i class="fas fa-chart-bar text-green-500 text-3xl mb-4"></i>
+                    <h3 class="font-bold mb-2 uppercase text-xs text-green-400" style="letter-spacing:0.1em">Output</h3>
+                    <p class="text-sm text-slate-500">Interactive charts, statistical tables, Trust Score, model comparisons, drift alerts, and auto-generated Pandas cleaning scripts — all live in the terminal.</p>
                 </div>
             </div>
         </section>
 
-        <section id="how-it-works" class="glass p-12 rounded-[3.5rem] border-t-4 border-purple-500">
-            <h2 class="text-3xl font-black mb-12 text-center uppercase tracking-tight">How It <span class="text-purple-500">Works</span></h2>
-            <div class="space-y-8">
-                <div class="grid md:grid-cols-4 gap-6">
-                    <div class="glass p-6 rounded-3xl text-center">
-                        <div class="text-4xl font-black text-blue-400 mb-2">1</div>
-                        <h3 class="font-bold mb-3 uppercase text-xs tracking-widest">User Uploads Data</h3>
-                        <p class="text-sm text-slate-500">Upload CSV file through simple interface</p>
-                    </div>
-                    <div class="glass p-6 rounded-3xl text-center">
-                        <div class="text-4xl font-black text-purple-400 mb-2">2</div>
-                        <h3 class="font-bold mb-3 uppercase text-xs tracking-widest">User Asks Question</h3>
-                        <p class="text-sm text-slate-500">"Show me correlations" or "Train a model"</p>
-                    </div>
-                    <div class="glass p-6 rounded-3xl text-center">
-                        <div class="text-4xl font-black text-green-400 mb-2">3</div>
-                        <h3 class="font-bold mb-3 uppercase text-xs tracking-widest">AI Decides</h3>
-                        <p class="text-sm text-slate-500">Ollama understands intent and picks right tool</p>
-                    </div>
-                    <div class="glass p-6 rounded-3xl text-center">
-                        <div class="text-4xl font-black text-blue-400 mb-2">4</div>
-                        <h3 class="font-bold mb-3 uppercase text-xs tracking-widest">System Executes</h3>
-                        <p class="text-sm text-slate-500">MCP server runs analysis and shows results</p>
-                    </div>
-                </div>
-                
+        <!-- ARCHITECTURE -->
+        <section id="architecture" style="display:flex;flex-direction:column;gap:3rem">
+            <h2 class="text-4xl font-black text-center uppercase" style="letter-spacing:-0.025em">System <span class="text-blue-500">Architecture</span></h2>
+            <div class="grid md:grid-cols-2 gap-8">
                 <div class="glass p-8 rounded-3xl border-l-4 border-blue-500">
-                    <h3 class="text-blue-400 font-bold uppercase text-xs tracking-widest mb-4">Example Flow</h3>
-                    <div class="space-y-4 text-sm">
-                        <div class="flex items-start gap-4">
-                            <div class="bg-blue-500/20 px-3 py-1 rounded text-blue-400 font-bold text-xs">User</div>
-                            <p class="text-slate-400 italic">"Analyze my sales data and show me which features are important"</p>
-                        </div>
-                        <div class="flex items-start gap-4">
-                            <div class="bg-purple-500/20 px-3 py-1 rounded text-purple-400 font-bold text-xs">AI Agent</div>
-                            <p class="text-slate-400">Understands: Need dataset analysis + feature importance</p>
-                        </div>
-                        <div class="flex items-start gap-4">
-                            <div class="bg-green-500/20 px-3 py-1 rounded text-green-400 font-bold text-xs">MCP Server</div>
-                            <p class="text-slate-400">Runs: analyzeDataset() → Shows statistics, then featureImportance() → Creates chart</p>
-                        </div>
-                        <div class="flex items-start gap-4">
-                            <div class="bg-blue-500/20 px-3 py-1 rounded text-blue-400 font-bold text-xs">Result</div>
-                            <p class="text-slate-400">User sees: Data summary + Feature importance chart + Insights</p>
-                        </div>
+                    <div class="flex items-center gap-3 mb-4">
+                        <i class="fas fa-desktop text-blue-500 text-2xl"></i>
+                        <h3 class="font-bold uppercase text-xs" style="letter-spacing:0.1em">UI Layer — React Terminal</h3>
+                    </div>
+                    <p class="text-sm text-slate-500">Bloomberg-aesthetic terminal. Dense information layout, zero decorative whitespace. JetBrains Mono + Inter typography. Color-coded output: <span class="text-cyan-400">cyan for data</span>, <span class="text-amber-400">amber for warnings</span>, <span class="text-green-400">green for passing</span>, <span class="text-red-400">red for failures</span>.</p>
+                </div>
+                <div class="glass p-8 rounded-3xl border-l-4 border-purple-500">
+                    <div class="flex items-center gap-3 mb-4">
+                        <i class="fas fa-server text-purple-500 text-2xl"></i>
+                        <h3 class="font-bold uppercase text-xs" style="letter-spacing:0.1em">FastAPI Backend</h3>
+                    </div>
+                    <p class="text-sm text-slate-500">REST + WebSocket server on port 8000. Handles file uploads, manages analysis state, streams real-time updates to the frontend, and coordinates all MCP tool calls.</p>
+                </div>
+                <div class="glass p-8 rounded-3xl border-l-4 border-green-500">
+                    <div class="flex items-center gap-3 mb-4">
+                        <i class="fas fa-brain text-green-500 text-2xl"></i>
+                        <h3 class="font-bold uppercase text-xs" style="letter-spacing:0.1em">NVIDIA AI Agent — Qwen2.5-Coder</h3>
+                    </div>
+                    <p class="text-sm text-slate-500">Powered by the NVIDIA API platform. Runs a strict autonomous loop — reads dataset context, reasons about what analysis to run, calls specific Python tools like <code class="text-green-400 text-xs">multivariate_pca()</code> or <code class="text-green-400 text-xs">run_anova()</code>, and synthesizes plain-text answers.</p>
+                </div>
+                <div class="glass p-8 rounded-3xl border-l-4" style="border-color:rgba(251,191,36,1)">
+                    <div class="flex items-center gap-3 mb-4">
+                        <i class="fas fa-tools text-amber-400 text-2xl"></i>
+                        <h3 class="font-bold uppercase text-xs" style="letter-spacing:0.1em">MCP Tool Registry</h3>
+                    </div>
+                    <p class="text-sm text-slate-500">The safe execution layer. Pure Python tools using pandas, scikit-learn, and scipy. Covers profiling, correlation, PCA, VIF, K-Means, model training, T-test failure analysis, contract validation, and drift detection.</p>
+                </div>
+            </div>
+
+            <!-- Architecture Flow Diagram -->
+            <div class="glass p-8 rounded-3xl border-t-4 border-blue-500">
+                <h3 class="text-blue-400 font-bold text-xs uppercase mb-6 text-center" style="letter-spacing:0.1em">System Flow</h3>
+                <div class="grid md:grid-cols-4 gap-4 items-center">
+                    <div class="text-center">
+                        <div class="glass p-4 rounded-2xl mb-2"><i class="fas fa-user text-blue-400 text-xl"></i></div>
+                        <p class="text-xs text-slate-400 font-bold uppercase" style="letter-spacing:0.05em">User</p>
+                        <p class="text-xs text-slate-600 mt-1">Uploads CSV + asks question</p>
+                    </div>
+                    <div class="text-center">
+                        <div class="glass p-4 rounded-2xl mb-2"><i class="fas fa-brain text-purple-400 text-xl"></i></div>
+                        <p class="text-xs text-slate-400 font-bold uppercase" style="letter-spacing:0.05em">AI Agent</p>
+                        <p class="text-xs text-slate-600 mt-1">Understands + plans tool sequence</p>
+                    </div>
+                    <div class="text-center">
+                        <div class="glass p-4 rounded-2xl mb-2"><i class="fas fa-cogs text-green-400 text-xl"></i></div>
+                        <p class="text-xs text-slate-400 font-bold uppercase" style="letter-spacing:0.05em">MCP Tools</p>
+                        <p class="text-xs text-slate-600 mt-1">Executes Python analysis safely</p>
+                    </div>
+                    <div class="text-center">
+                        <div class="glass p-4 rounded-2xl mb-2"><i class="fas fa-chart-line text-amber-400 text-xl"></i></div>
+                        <p class="text-xs text-slate-400 font-bold uppercase" style="letter-spacing:0.05em">Terminal</p>
+                        <p class="text-xs text-slate-600 mt-1">Renders charts, stats, scores live</p>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section id="tools" class="space-y-12">
-            <h2 class="text-4xl font-black text-center uppercase tracking-tight">Available <span class="text-blue-500">Tools</span></h2>
+        <!-- HOW IT WORKS -->
+        <section id="how-it-works" class="glass p-12 rounded-3xl border-t-4 border-purple-500" style="border-radius:3.5rem">
+            <h2 class="text-3xl font-black mb-12 text-center uppercase" style="letter-spacing:-0.025em">How It <span class="text-purple-500">Works</span></h2>
+            <div class="grid md:grid-cols-4 gap-6 mb-10">
+                <div class="glass p-6 rounded-3xl text-center">
+                    <div class="text-4xl font-black text-blue-400 mb-2">1</div>
+                    <h3 class="font-bold mb-3 uppercase text-xs" style="letter-spacing:0.1em">Upload Data</h3>
+                    <p class="text-sm text-slate-500">Drop a CSV or point to a file path. System fingerprints the dataset instantly.</p>
+                </div>
+                <div class="glass p-6 rounded-3xl text-center">
+                    <div class="text-4xl font-black text-purple-400 mb-2">2</div>
+                    <h3 class="font-bold mb-3 uppercase text-xs" style="letter-spacing:0.1em">Ask a Question</h3>
+                    <p class="text-sm text-slate-500">"Why is my model failing?" or "Check if these two datasets can be joined."</p>
+                </div>
+                <div class="glass p-6 rounded-3xl text-center">
+                    <div class="text-4xl font-black text-green-400 mb-2">3</div>
+                    <h3 class="font-bold mb-3 uppercase text-xs" style="letter-spacing:0.1em">Agent Reasons</h3>
+                    <p class="text-sm text-slate-500">Qwen2.5 builds a logic plan, calls the right MCP tools in sequence, tracks results.</p>
+                </div>
+                <div class="glass p-6 rounded-3xl text-center">
+                    <div class="text-4xl font-black text-amber-400 mb-2">4</div>
+                    <h3 class="font-bold mb-3 uppercase text-xs" style="letter-spacing:0.1em">Results Appear</h3>
+                    <p class="text-sm text-slate-500">Stats, charts, Trust Score, model rankings, drift alerts — all live in the terminal.</p>
+                </div>
+            </div>
+            <!-- Example Flow -->
+            <div class="glass p-8 rounded-3xl border-l-4 border-blue-500">
+                <h3 class="text-blue-400 font-bold uppercase text-xs mb-4" style="letter-spacing:0.1em">Example Interaction</h3>
+                <div style="display:flex;flex-direction:column;gap:1rem;font-size:0.875rem">
+                    <div class="flex items-start gap-4">
+                        <div class="px-3 py-1 rounded text-blue-400 font-bold text-xs" style="background:rgba(59,130,246,0.2);white-space:nowrap">User</div>
+                        <p class="text-slate-400 italic">"Analyze my sales data and tell me why my model keeps failing"</p>
+                    </div>
+                    <div class="flex items-start gap-4">
+                        <div class="px-3 py-1 rounded text-purple-400 font-bold text-xs" style="background:rgba(168,85,247,0.2);white-space:nowrap">AI Agent</div>
+                        <p class="text-slate-400">Plans: run EDA → check VIF → train model → isolate misclassified rows → run T-test analysis</p>
+                    </div>
+                    <div class="flex items-start gap-4">
+                        <div class="px-3 py-1 rounded text-green-400 font-bold text-xs" style="background:rgba(34,197,94,0.2);white-space:nowrap">MCP Tools</div>
+                        <p class="text-slate-400">Executes: <code class="text-green-400">univariate_analysis()</code> → <code class="text-green-400">compute_vif()</code> → <code class="text-green-400">train_models()</code> → <code class="text-green-400">failure_analysis()</code></p>
+                    </div>
+                    <div class="flex items-start gap-4">
+                        <div class="px-3 py-1 rounded text-amber-400 font-bold text-xs" style="background:rgba(251,191,36,0.2);white-space:nowrap">Result</div>
+                        <p class="text-slate-400">Plain-English report: which features caused failures, T-test evidence, auto-generated Pandas fix code</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- KEY FEATURES -->
+        <section id="features" style="display:flex;flex-direction:column;gap:3rem">
+            <h2 class="text-4xl font-black text-center uppercase" style="letter-spacing:-0.025em">Key <span class="text-blue-500">Features</span></h2>
+
+            <!-- Row 1: Profiling + Governance -->
             <div class="grid md:grid-cols-2 gap-10">
-                <div class="glass p-10 rounded-[2.5rem] border-r-4 border-blue-500/50">
-                    <h3 class="text-blue-400 font-bold text-xs uppercase tracking-widest mb-6">Basic Tools (Level 1)</h3>
-                    <div class="space-y-4 text-sm">
-                        <div class="bg-black/40 rounded-xl p-4 border border-slate-900">
-                            <div class="text-green-500 font-bold mb-2 text-xs uppercase tracking-widest">Dataset Summary</div>
-                            <p class="text-slate-500 text-xs mb-2">Shows: Number of rows, columns, data types, missing values, basic statistics</p>
-                            <p class="text-slate-400 text-xs italic">Example: "Give me a summary of this data"</p>
+                <div class="glass p-10 rounded-3xl border-l-4 border-blue-500" style="border-radius:2.5rem">
+                    <div class="flex items-center gap-3 mb-6">
+                        <i class="fas fa-chart-bar text-blue-400 text-xl"></i>
+                        <h3 class="text-blue-400 font-bold text-xs uppercase" style="letter-spacing:0.1em">Advanced Data Profiling</h3>
+                    </div>
+                    <div style="display:flex;flex-direction:column;gap:1rem;font-size:0.875rem">
+                        <div class="rounded-xl p-4 border border-slate-900" style="background:rgba(0,0,0,0.4)">
+                            <div class="text-green-500 font-bold mb-1 text-xs uppercase" style="letter-spacing:0.1em">Univariate Analysis</div>
+                            <p class="text-slate-500 text-xs">16+ stats per column — mean, std, skewness, kurtosis, and entropy. Understand every column before touching it.</p>
                         </div>
-                        <div class="bg-black/40 rounded-xl p-4 border border-slate-900">
-                            <div class="text-blue-500 font-bold mb-2 text-xs uppercase tracking-widest">Correlation Plot</div>
-                            <p class="text-slate-500 text-xs mb-2">Creates heatmap showing how features relate to each other</p>
-                            <p class="text-slate-400 text-xs italic">Example: "Show me correlations"</p>
+                        <div class="rounded-xl p-4 border border-slate-900" style="background:rgba(0,0,0,0.4)">
+                            <div class="text-blue-500 font-bold mb-1 text-xs uppercase" style="letter-spacing:0.1em">Bivariate Analysis</div>
+                            <p class="text-slate-500 text-xs">Auto-selects Pearson/Spearman, ANOVA, Chi-square, or Cramér's V based on variable types — no manual setup.</p>
                         </div>
-                        <div class="bg-black/40 rounded-xl p-4 border border-slate-900">
-                            <div class="text-purple-500 font-bold mb-2 text-xs uppercase tracking-widest">Train Model</div>
-                            <p class="text-slate-500 text-xs mb-2">Trains logistic regression model and shows accuracy score</p>
-                            <p class="text-slate-400 text-xs italic">Example: "Train a model to predict outcomes"</p>
+                        <div class="rounded-xl p-4 border border-slate-900" style="background:rgba(0,0,0,0.4)">
+                            <div class="text-purple-500 font-bold mb-1 text-xs uppercase" style="letter-spacing:0.1em">Multivariate Analysis</div>
+                            <p class="text-slate-500 text-xs">PCA, VIF multicollinearity check, K-Means clustering, and feature importance — all in one pass.</p>
+                        </div>
+                        <div class="rounded-xl p-4 border border-slate-900" style="background:rgba(0,0,0,0.4)">
+                            <div class="text-amber-500 font-bold mb-1 text-xs uppercase" style="letter-spacing:0.1em">Correlation Heatmap</div>
+                            <p class="text-slate-500 text-xs">Interactive Pearson matrix with critical variable pairs highlighted for instant insight.</p>
                         </div>
                     </div>
                 </div>
-                
-                <div class="glass p-10 rounded-[2.5rem] border-r-4 border-purple-500/50">
-                    <h3 class="text-purple-400 font-bold text-xs uppercase tracking-widest mb-6">Advanced Tools (Level 2)</h3>
-                    <div class="space-y-4 text-sm">
-                        <div class="bg-black/40 rounded-xl p-4 border border-slate-900">
-                            <div class="text-green-500 font-bold mb-2 text-xs uppercase tracking-widest">Model Comparison</div>
-                            <p class="text-slate-500 text-xs mb-2">Tests multiple models and ranks them by performance</p>
-                            <p class="text-slate-400 text-xs italic">Example: "Which model works best for this data?"</p>
+
+                <div class="glass p-10 rounded-3xl border-l-4 border-purple-500" style="border-radius:2.5rem">
+                    <div class="flex items-center gap-3 mb-6">
+                        <i class="fas fa-shield-alt text-purple-400 text-xl"></i>
+                        <h3 class="text-purple-400 font-bold text-xs uppercase" style="letter-spacing:0.1em">Enterprise Data Governance</h3>
+                    </div>
+                    <div style="display:flex;flex-direction:column;gap:1rem;font-size:0.875rem">
+                        <div class="rounded-xl p-4 border border-slate-900" style="background:rgba(0,0,0,0.4)">
+                            <div class="text-purple-400 font-bold mb-1 text-xs uppercase" style="letter-spacing:0.1em">Data Contract Validator</div>
+                            <p class="text-slate-500 text-xs">Enforce schema rules — value limits, regex patterns, uniqueness. Outputs a dynamic 0–100 <span class="text-purple-400 font-bold">Trust Score</span> weighted by violation severity vs. row count.</p>
                         </div>
-                        <div class="bg-black/40 rounded-xl p-4 border border-slate-900">
-                            <div class="text-blue-500 font-bold mb-2 text-xs uppercase tracking-widest">Feature Importance</div>
-                            <p class="text-slate-500 text-xs mb-2">Shows which columns matter most for predictions</p>
-                            <p class="text-slate-400 text-xs italic">Example: "What features are most important?"</p>
+                        <div class="rounded-xl p-4 border border-slate-900" style="background:rgba(0,0,0,0.4)">
+                            <div class="text-blue-400 font-bold mb-1 text-xs uppercase" style="letter-spacing:0.1em">Dataset Compatibility Analyzer</div>
+                            <p class="text-slate-500 text-xs">Jaccard overlap to find viable join keys. Flags format mismatches (leading zeros, type conflicts, case issues) and forecasts row loss for Inner/Left joins.</p>
                         </div>
-                        <div class="bg-black/40 rounded-xl p-4 border border-slate-900">
-                            <div class="text-purple-500 font-bold mb-2 text-xs uppercase tracking-widest">Automated EDA</div>
-                            <p class="text-slate-500 text-xs mb-2">Generates complete report with insights and charts automatically</p>
-                            <p class="text-slate-400 text-xs italic">Example: "Give me a full analysis report"</p>
+                        <div class="rounded-xl p-4 border border-slate-900" style="background:rgba(0,0,0,0.4)">
+                            <div class="text-green-400 font-bold mb-1 text-xs uppercase" style="letter-spacing:0.1em">Drift Detection</div>
+                            <p class="text-slate-500 text-xs">KL Divergence-based fingerprinting flags distribution shifts, mean drift, and missing value surges between dataset versions.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Row 2: ML Engine + Data Intelligence -->
+            <div class="grid md:grid-cols-2 gap-10">
+                <div class="glass p-10 rounded-3xl border-l-4 border-green-500" style="border-radius:2.5rem">
+                    <div class="flex items-center gap-3 mb-6">
+                        <i class="fas fa-robot text-green-400 text-xl"></i>
+                        <h3 class="text-green-400 font-bold text-xs uppercase" style="letter-spacing:0.1em">Machine Learning Engine</h3>
+                    </div>
+                    <div style="display:flex;flex-direction:column;gap:1rem;font-size:0.875rem">
+                        <div class="rounded-xl p-4 border border-slate-900" style="background:rgba(0,0,0,0.4)">
+                            <div class="text-green-500 font-bold mb-1 text-xs uppercase" style="letter-spacing:0.1em">Model Recommendation</div>
+                            <p class="text-slate-500 text-xs">Intelligently suggests algorithms based on class imbalance flags, row count, and VIF scores — before you even start training.</p>
+                        </div>
+                        <div class="rounded-xl p-4 border border-slate-900" style="background:rgba(0,0,0,0.4)">
+                            <div class="text-blue-500 font-bold mb-1 text-xs uppercase" style="letter-spacing:0.1em">Auto Model Training</div>
+                            <p class="text-slate-500 text-xs">Trains 3 models in parallel with automated 80/20 splits, median imputation, StandardScaler, and LabelEncoder. Compare results side-by-side instantly.</p>
+                        </div>
+                        <div class="rounded-xl p-4 border border-slate-900" style="background:rgba(0,0,0,0.4)">
+                            <div class="text-red-400 font-bold mb-1 text-xs uppercase" style="letter-spacing:0.1em">Model Failure Analysis</div>
+                            <p class="text-slate-500 text-xs">Isolates misclassified rows, runs T-tests against correct predictions. Outputs plain-English explanations of exactly <em>where and why</em> the model failed.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="glass p-10 rounded-3xl border-l-4" style="border-color:rgba(251,191,36,1);border-radius:2.5rem">
+                    <div class="flex items-center gap-3 mb-6">
+                        <i class="fas fa-lightbulb text-amber-400 text-xl"></i>
+                        <h3 class="text-amber-400 font-bold text-xs uppercase" style="letter-spacing:0.1em">Data Intelligence</h3>
+                    </div>
+                    <div style="display:flex;flex-direction:column;gap:1rem;font-size:0.875rem">
+                        <div class="rounded-xl p-4 border border-slate-900" style="background:rgba(0,0,0,0.4)">
+                            <div class="text-amber-400 font-bold mb-1 text-xs uppercase" style="letter-spacing:0.1em">Auto Cleaning Script</div>
+                            <p class="text-slate-500 text-xs">Generates ready-to-run Pandas code tailored to fix the exact anomalies found during analysis. No guesswork, just copy and run.</p>
+                        </div>
+                        <div class="rounded-xl p-4 border border-slate-900" style="background:rgba(0,0,0,0.4)">
+                            <div class="text-green-400 font-bold mb-1 text-xs uppercase" style="letter-spacing:0.1em">Data Quality Score</div>
+                            <p class="text-slate-500 text-xs">Always-visible holistic wellness grade for your dataset. Know your data's health at a glance before running any analysis.</p>
+                        </div>
+                        <div class="rounded-xl p-4 border border-slate-900" style="background:rgba(0,0,0,0.4)">
+                            <div class="text-blue-400 font-bold mb-1 text-xs uppercase" style="letter-spacing:0.1em">Autonomous AI Agent</div>
+                            <p class="text-slate-500 text-xs">Qwen2.5-Coder via NVIDIA API runs multi-step reasoning loops. Asks questions, runs tools, and synthesizes answers — all without you writing a single line of code.</p>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section id="tech-stack" class="glass p-12 rounded-[3.5rem] border-t-4 border-green-500">
-            <h2 class="text-3xl font-black mb-12 text-center uppercase tracking-tight">Technology <span class="text-green-500">Stack</span></h2>
-            <div class="grid md:grid-cols-3 gap-8">
-                <div class="glass p-8 rounded-3xl text-center">
-                    <h3 class="text-blue-400 font-bold uppercase text-xs tracking-widest mb-4">Core Python</h3>
-                    <div class="space-y-3 text-sm text-slate-500">
-                        <div class="flex items-center justify-center gap-2">
-                            <i class="fas fa-table text-blue-500"></i>
-                            <span>Pandas (data analysis)</span>
-                        </div>
-                        <div class="flex items-center justify-center gap-2">
-                            <i class="fas fa-chart-line text-green-500"></i>
-                            <span>Matplotlib/Seaborn (charts)</span>
-                        </div>
-                        <div class="flex items-center justify-center gap-2">
-                            <i class="fas fa-robot text-purple-500"></i>
-                            <span>Scikit-learn (ML models)</span>
-                        </div>
+        <!-- TECH STACK -->
+        <section id="tech-stack" class="glass p-12 rounded-3xl border-t-4 border-green-500" style="border-radius:3.5rem">
+            <h2 class="text-3xl font-black mb-12 text-center uppercase" style="letter-spacing:-0.025em">Technology <span class="text-green-500">Stack</span></h2>
+            <div class="grid md:grid-cols-2 gap-8">
+                <div class="glass p-8 rounded-3xl">
+                    <h3 class="text-blue-400 font-bold uppercase text-xs mb-4" style="letter-spacing:0.1em">Backend / ML</h3>
+                    <div style="display:flex;flex-direction:column;gap:0.75rem;font-size:0.875rem;color:rgb(100,116,139)">
+                        <div class="flex items-center gap-2"><i class="fas fa-server text-blue-500"></i><span>Python 3.11 + FastAPI (REST & WebSocket)</span></div>
+                        <div class="flex items-center gap-2"><i class="fas fa-table text-green-500"></i><span>pandas — data manipulation & analysis</span></div>
+                        <div class="flex items-center gap-2"><i class="fas fa-robot text-purple-500"></i><span>scikit-learn — ML models & preprocessing</span></div>
+                        <div class="flex items-center gap-2"><i class="fas fa-calculator text-amber-500"></i><span>scipy — statistical tests (T-test, ANOVA, Chi-square)</span></div>
                     </div>
                 </div>
-                <div class="glass p-8 rounded-3xl text-center">
-                    <h3 class="text-purple-400 font-bold uppercase text-xs tracking-widest mb-4">AI Layer</h3>
-                    <div class="space-y-3 text-sm text-slate-500">
-                        <div class="flex items-center justify-center gap-2">
-                            <i class="fas fa-brain text-blue-500"></i>
-                            <span>Ollama (Local LLM)</span>
-                        </div>
-                        <div class="flex items-center justify-center gap-2">
-                            <i class="fas fa-comments text-green-500"></i>
-                            <span>Prompt Engineering</span>
-                        </div>
-                        <div class="flex items-center justify-center gap-2">
-                            <i class="fas fa-project-diagram text-purple-500"></i>
-                            <span>Tool Routing Logic</span>
-                        </div>
+                <div class="glass p-8 rounded-3xl">
+                    <h3 class="text-purple-400 font-bold uppercase text-xs mb-4" style="letter-spacing:0.1em">AI Layer</h3>
+                    <div style="display:flex;flex-direction:column;gap:0.75rem;font-size:0.875rem;color:rgb(100,116,139)">
+                        <div class="flex items-center gap-2"><i class="fas fa-brain text-purple-500"></i><span>NVIDIA API — Qwen2.5-Coder (cloud-quality, no local GPU)</span></div>
+                        <div class="flex items-center gap-2"><i class="fas fa-project-diagram text-blue-500"></i><span>MCP-style agentic tool loop</span></div>
+                        <div class="flex items-center gap-2"><i class="fas fa-code text-green-500"></i><span>Autonomous multi-step reasoning</span></div>
                     </div>
                 </div>
-                <div class="glass p-8 rounded-3xl text-center">
-                    <h3 class="text-green-400 font-bold uppercase text-xs tracking-widest mb-4">Interface</h3>
-                    <div class="space-y-3 text-sm text-slate-500">
-                        <div class="flex items-center justify-center gap-2">
-                            <i class="fas fa-terminal text-blue-500"></i>
-                            <span>CLI (Command Line)</span>
-                        </div>
-                        <div class="flex items-center justify-center gap-2">
-                            <i class="fas fa-window-maximize text-green-500"></i>
-                            <span>Streamlit (Web UI)</span>
-                        </div>
-                        <div class="flex items-center justify-center gap-2">
-                            <i class="fas fa-server text-purple-500"></i>
-                            <span>MCP Server</span>
-                        </div>
+                <div class="glass p-8 rounded-3xl">
+                    <h3 class="text-green-400 font-bold uppercase text-xs mb-4" style="letter-spacing:0.1em">Frontend</h3>
+                    <div style="display:flex;flex-direction:column;gap:0.75rem;font-size:0.875rem;color:rgb(100,116,139)">
+                        <div class="flex items-center gap-2"><i class="fab fa-react text-blue-400"></i><span>React + Vite — Bloomberg terminal UI</span></div>
+                        <div class="flex items-center gap-2"><i class="fas fa-chart-line text-green-500"></i><span>Recharts + D3.js — interactive visualizations</span></div>
+                        <div class="flex items-center gap-2"><i class="fas fa-plug text-purple-500"></i><span>WebSocket — real-time result streaming</span></div>
+                    </div>
+                </div>
+                <div class="glass p-8 rounded-3xl">
+                    <h3 class="text-amber-400 font-bold uppercase text-xs mb-4" style="letter-spacing:0.1em">Statistical Methods</h3>
+                    <div style="display:flex;flex-direction:column;gap:0.75rem;font-size:0.875rem;color:rgb(100,116,139)">
+                        <div class="flex items-center gap-2"><i class="fas fa-wave-square text-amber-400"></i><span>KL Divergence — drift detection</span></div>
+                        <div class="flex items-center gap-2"><i class="fas fa-link text-blue-400"></i><span>Pearson / Spearman / Cramér's V — correlation</span></div>
+                        <div class="flex items-center gap-2"><i class="fas fa-compress-arrows-alt text-green-400"></i><span>PCA + VIF — dimensionality & multicollinearity</span></div>
+                        <div class="flex items-center gap-2"><i class="fas fa-vials text-purple-400"></i><span>T-tests + Jaccard — failure analysis & join compatibility</span></div>
                     </div>
                 </div>
             </div>
         </section>
 
+        <!-- PROGRESS TIMELINE -->
         <section id="timeline" class="grid md:grid-cols-3 gap-8">
             <div class="glass p-8 rounded-3xl border-b-4 border-green-500">
                 <div class="flex items-center gap-3 mb-4">
                     <i class="fas fa-check-circle text-green-400 text-2xl"></i>
-                    <h3 class="font-bold uppercase text-xs tracking-widest">Completed</h3>
+                    <h3 class="font-bold uppercase text-xs" style="letter-spacing:0.1em">Completed ✅</h3>
                 </div>
-                <div class="space-y-2 text-sm text-slate-500">
-                    <div>• System architecture design</div>
-                    <div>• MCP server basic structure</div>
-                    <div>• Dataset summary tool</div>
-                    <div>• Correlation plot tool</div>
-                    <div>• Basic Ollama integration</div>
+                <div style="display:flex;flex-direction:column;gap:0.5rem;font-size:0.875rem;color:rgb(100,116,139)">
+                    <div>• Full React terminal UI</div>
+                    <div>• FastAPI + WebSocket backend</div>
+                    <div>• All MCP analysis tools</div>
+                    <div>• NVIDIA Qwen2.5 agent integration</div>
+                    <div>• Data Contract Validator + Trust Score</div>
+                    <div>• Dataset Compatibility Analyzer</div>
+                    <div>• Drift Detection (KL Divergence)</div>
+                    <div>• Model Training + Failure Analysis</div>
+                    <div>• Auto Cleaning Script Generator</div>
+                    <div>• Data Quality Score</div>
                 </div>
             </div>
             <div class="glass p-8 rounded-3xl border-b-4 border-blue-500">
                 <div class="flex items-center gap-3 mb-4">
                     <i class="fas fa-spinner text-blue-400 text-2xl"></i>
-                    <h3 class="font-bold uppercase text-xs tracking-widest">In Progress</h3>
+                    <h3 class="font-bold uppercase text-xs" style="letter-spacing:0.1em">In Progress 🔄</h3>
                 </div>
-                <div class="space-y-2 text-sm text-slate-500">
-                    <div>• Logistic regression tool</div>
-                    <div>• Streamlit UI development</div>
-                    <div>• Tool routing improvements</div>
-                    <div>• Error handling</div>
-                    <div>• Result visualization</div>
+                <div style="display:flex;flex-direction:column;gap:0.5rem;font-size:0.875rem;color:rgb(100,116,139)">
+                    <div>• UI performance tuning</div>
+                    <div>• Edge case handling for messy CSVs</div>
+                    <div>• Agent prompt refinement for complex queries</div>
                 </div>
             </div>
             <div class="glass p-8 rounded-3xl border-b-4 border-purple-500">
                 <div class="flex items-center gap-3 mb-4">
                     <i class="fas fa-clock text-purple-400 text-2xl"></i>
-                    <h3 class="font-bold uppercase text-xs tracking-widest">Upcoming</h3>
+                    <h3 class="font-bold uppercase text-xs" style="letter-spacing:0.1em">Upcoming 🕐</h3>
                 </div>
-                <div class="space-y-2 text-sm text-slate-500">
-                    <div>• Model comparison tool</div>
-                    <div>• Feature importance viz</div>
-                    <div>• Automated EDA reports</div>
-                    <div>• UI polish</div>
-                    <div>• Documentation</div>
+                <div style="display:flex;flex-direction:column;gap:0.5rem;font-size:0.875rem;color:rgb(100,116,139)">
+                    <div>• PDF / HTML report export</div>
+                    <div>• Extended model support</div>
+                    <div>• Drift alert notifications</div>
+                    <div>• Full documentation</div>
                 </div>
             </div>
         </section>
 
-        <section id="use-cases" class="glass p-12 rounded-[3.5rem] border-t-4 border-blue-500">
-            <h2 class="text-3xl font-black mb-12 text-center uppercase tracking-tight">Use <span class="text-blue-500">Cases</span></h2>
+        <!-- USE CASES -->
+        <section id="use-cases" class="glass p-12 rounded-3xl border-t-4 border-blue-500" style="border-radius:3.5rem">
+            <h2 class="text-3xl font-black mb-12 text-center uppercase" style="letter-spacing:-0.025em">Use <span class="text-blue-500">Cases</span></h2>
             <div class="grid md:grid-cols-2 gap-8">
                 <div class="glass p-8 rounded-3xl border-l-4 border-blue-500">
-                    <h3 class="text-xl font-bold mb-4">For Students</h3>
-                    <div class="space-y-2 text-sm text-slate-500">
-                        <div class="flex items-start gap-2">
-                            <i class="fas fa-check text-blue-400 mt-1"></i>
-                            <span>Quickly analyze assignment datasets</span>
-                        </div>
-                        <div class="flex items-start gap-2">
-                            <i class="fas fa-check text-blue-400 mt-1"></i>
-                            <span>Learn data science without coding</span>
-                        </div>
-                        <div class="flex items-start gap-2">
-                            <i class="fas fa-check text-blue-400 mt-1"></i>
-                            <span>Generate charts for reports instantly</span>
-                        </div>
+                    <h3 class="text-xl font-bold mb-4">🎓 For Students</h3>
+                    <div style="display:flex;flex-direction:column;gap:0.5rem;font-size:0.875rem;color:rgb(100,116,139)">
+                        <div class="flex items-start gap-2"><i class="fas fa-check text-blue-400 mt-1"></i><span>Profile assignment datasets in seconds</span></div>
+                        <div class="flex items-start gap-2"><i class="fas fa-check text-blue-400 mt-1"></i><span>Get model comparisons and charts without writing any code</span></div>
+                        <div class="flex items-start gap-2"><i class="fas fa-check text-blue-400 mt-1"></i><span>Learn data science concepts by seeing them in action</span></div>
                     </div>
                 </div>
                 <div class="glass p-8 rounded-3xl border-l-4 border-purple-500">
-                    <h3 class="text-xl font-bold mb-4">For Researchers</h3>
-                    <div class="space-y-2 text-sm text-slate-500">
-                        <div class="flex items-start gap-2">
-                            <i class="fas fa-check text-purple-400 mt-1"></i>
-                            <span>Explore data patterns quickly</span>
-                        </div>
-                        <div class="flex items-start gap-2">
-                            <i class="fas fa-check text-purple-400 mt-1"></i>
-                            <span>Keep sensitive research data private</span>
-                        </div>
-                        <div class="flex items-start gap-2">
-                            <i class="fas fa-check text-purple-400 mt-1"></i>
-                            <span>Reproducible analysis workflows</span>
-                        </div>
+                    <h3 class="text-xl font-bold mb-4">🔬 For Researchers</h3>
+                    <div style="display:flex;flex-direction:column;gap:0.5rem;font-size:0.875rem;color:rgb(100,116,139)">
+                        <div class="flex items-start gap-2"><i class="fas fa-check text-purple-400 mt-1"></i><span>Enforce data contracts to validate experiment data</span></div>
+                        <div class="flex items-start gap-2"><i class="fas fa-check text-purple-400 mt-1"></i><span>Detect drift between data collection rounds using KL Divergence</span></div>
+                        <div class="flex items-start gap-2"><i class="fas fa-check text-purple-400 mt-1"></i><span>Keep sensitive research data fully local — no cloud uploads</span></div>
                     </div>
                 </div>
                 <div class="glass p-8 rounded-3xl border-l-4 border-green-500">
-                    <h3 class="text-xl font-bold mb-4">For Small Businesses</h3>
-                    <div class="space-y-2 text-sm text-slate-500">
-                        <div class="flex items-start gap-2">
-                            <i class="fas fa-check text-green-400 mt-1"></i>
-                            <span>Analyze sales data without hiring data scientists</span>
-                        </div>
-                        <div class="flex items-start gap-2">
-                            <i class="fas fa-check text-green-400 mt-1"></i>
-                            <span>Make data-driven decisions easily</span>
-                        </div>
-                        <div class="flex items-start gap-2">
-                            <i class="fas fa-check text-green-400 mt-1"></i>
-                            <span>No expensive cloud services needed</span>
-                        </div>
+                    <h3 class="text-xl font-bold mb-4">🏗️ For Data Engineers</h3>
+                    <div style="display:flex;flex-direction:column;gap:0.5rem;font-size:0.875rem;color:rgb(100,116,139)">
+                        <div class="flex items-start gap-2"><i class="fas fa-check text-green-400 mt-1"></i><span>Instantly check if two datasets are join-compatible</span></div>
+                        <div class="flex items-start gap-2"><i class="fas fa-check text-green-400 mt-1"></i><span>Get exact forecasts of row loss before running expensive queries</span></div>
+                        <div class="flex items-start gap-2"><i class="fas fa-check text-green-400 mt-1"></i><span>Auto-detect format mismatches that break joins silently</span></div>
                     </div>
                 </div>
-                <div class="glass p-8 rounded-3xl border-l-4 border-blue-500">
-                    <h3 class="text-xl font-bold mb-4">For Data Scientists</h3>
-                    <div class="space-y-2 text-sm text-slate-500">
-                        <div class="flex items-start gap-2">
-                            <i class="fas fa-check text-blue-400 mt-1"></i>
-                            <span>Automate repetitive analysis tasks</span>
-                        </div>
-                        <div class="flex items-start gap-2">
-                            <i class="fas fa-check text-blue-400 mt-1"></i>
-                            <span>Quick EDA before deep analysis</span>
-                        </div>
-                        <div class="flex items-start gap-2">
-                            <i class="fas fa-check text-blue-400 mt-1"></i>
-                            <span>Prototype analysis pipelines fast</span>
-                        </div>
+                <div class="glass p-8 rounded-3xl border-l-4 border-amber-500">
+                    <h3 class="text-xl font-bold mb-4">📊 For Data Scientists</h3>
+                    <div style="display:flex;flex-direction:column;gap:0.5rem;font-size:0.875rem;color:rgb(100,116,139)">
+                        <div class="flex items-start gap-2"><i class="fas fa-check text-amber-400 mt-1"></i><span>Skip boilerplate EDA — get full profiling in seconds</span></div>
+                        <div class="flex items-start gap-2"><i class="fas fa-check text-amber-400 mt-1"></i><span>Get model failure root-cause analysis with T-test evidence</span></div>
+                        <div class="flex items-start gap-2"><i class="fas fa-check text-amber-400 mt-1"></i><span>Receive auto-generated Pandas fixing code for every anomaly</span></div>
                     </div>
                 </div>
             </div>
         </section>
 
+        <!-- CHALLENGES & LEARNINGS -->
         <section id="challenges" class="grid md:grid-cols-2 gap-12 items-stretch">
-            <div class="glass p-10 rounded-[2.5rem] border-l-4 border-blue-600">
+            <div class="glass p-10 rounded-3xl border-l-4 border-blue-600" style="border-radius:2.5rem">
                 <h2 class="text-2xl font-extrabold mb-6 flex items-center gap-3">
                     <i class="fas fa-exclamation-circle text-blue-400"></i>
                     Challenges Faced
                 </h2>
-                <div class="space-y-3 text-sm text-slate-500">
-                    <div class="flex items-start gap-2">
-                        <span class="text-blue-400">•</span>
-                        <span>Getting Ollama to understand diverse natural language queries consistently</span>
-                    </div>
-                    <div class="flex items-start gap-2">
-                        <span class="text-blue-400">•</span>
-                        <span>Handling different dataset formats and missing data gracefully</span>
-                    </div>
-                    <div class="flex items-start gap-2">
-                        <span class="text-blue-400">•</span>
-                        <span>Balancing simplicity for users with powerful features for advanced users</span>
-                    </div>
-                    <div class="flex items-start gap-2">
-                        <span class="text-blue-400">•</span>
-                        <span>Making visualizations clear and informative without overwhelming users</span>
-                    </div>
+                <div style="display:flex;flex-direction:column;gap:0.75rem;font-size:0.875rem;color:rgb(100,116,139)">
+                    <div class="flex items-start gap-2"><span class="text-blue-400">•</span><span>Building a reliable agentic loop where Qwen2.5 consistently calls the correct tool with the right parameters</span></div>
+                    <div class="flex items-start gap-2"><span class="text-blue-400">•</span><span>Implementing KL Divergence-based drift detection that works on real-world noisy datasets</span></div>
+                    <div class="flex items-start gap-2"><span class="text-blue-400">•</span><span>Making the Trust Score formula fair — balancing violation severity, row count, and constraint type</span></div>
+                    <div class="flex items-start gap-2"><span class="text-blue-400">•</span><span>Keeping the terminal UI performant while streaming multiple WebSocket updates simultaneously</span></div>
                 </div>
             </div>
-            <div class="glass p-10 rounded-[2.5rem] border-l-4 border-green-600">
+            <div class="glass p-10 rounded-3xl border-l-4 border-green-600" style="border-radius:2.5rem">
                 <h2 class="text-2xl font-extrabold mb-6 flex items-center gap-3">
                     <i class="fas fa-lightbulb text-green-400"></i>
                     Key Learnings
                 </h2>
-                <div class="space-y-3 text-sm text-slate-500">
-                    <div class="flex items-start gap-2">
-                        <span class="text-green-400">•</span>
-                        <span>Importance of clear separation between AI decision-making and actual execution</span>
-                    </div>
-                    <div class="flex items-start gap-2">
-                        <span class="text-green-400">•</span>
-                        <span>Local LLMs like Ollama are powerful enough for intelligent tool routing</span>
-                    </div>
-                    <div class="flex items-start gap-2">
-                        <span class="text-green-400">•</span>
-                        <span>Modular tool design makes the system easy to expand and maintain</span>
-                    </div>
-                    <div class="flex items-start gap-2">
-                        <span class="text-green-400">•</span>
-                        <span>Simple interfaces with smart backend make data science accessible to everyone</span>
-                    </div>
+                <div style="display:flex;flex-direction:column;gap:0.75rem;font-size:0.875rem;color:rgb(100,116,139)">
+                    <div class="flex items-start gap-2"><span class="text-green-400">•</span><span>Strict separation of AI reasoning and code execution is essential for safe, auditable AI systems</span></div>
+                    <div class="flex items-start gap-2"><span class="text-green-400">•</span><span>Statistical heuristics (Jaccard, KL Divergence, T-tests) are far more reliable than simple threshold checks</span></div>
+                    <div class="flex items-start gap-2"><span class="text-green-400">•</span><span>Real-time WebSocket streaming fundamentally changes how users trust and interact with analysis tools</span></div>
+                    <div class="flex items-start gap-2"><span class="text-green-400">•</span><span>NVIDIA API gives cloud-quality LLM performance without needing any local GPU infrastructure</span></div>
                 </div>
             </div>
         </section>
 
-        <section id="future" class="glass p-12 rounded-[3.5rem] border-t-4 border-purple-500">
-            <h2 class="text-3xl font-black mb-12 text-center uppercase tracking-tight">Future <span class="text-purple-500">Enhancements</span></h2>
-            <div class="space-y-6">
-                <div class="glass p-8 rounded-3xl border-l-4 border-blue-500">
-                    <div class="flex items-start gap-4">
-                        <i class="fas fa-robot text-blue-400 text-2xl mt-1"></i>
-                        <div>
-                            <h3 class="text-lg font-bold mb-2">More ML Algorithms</h3>
-                            <p class="text-sm text-slate-500">Add decision trees, random forests, neural networks, clustering, and more model options</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="glass p-8 rounded-3xl border-l-4 border-purple-500">
-                    <div class="flex items-start gap-4">
-                        <i class="fas fa-comments text-purple-400 text-2xl mt-1"></i>
-                        <div>
-                            <h3 class="text-lg font-bold mb-2">Conversational Interface</h3>
-                            <p class="text-sm text-slate-500">Chat-style interaction where system remembers context and can do multi-step analysis</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="glass p-8 rounded-3xl border-l-4 border-green-500">
-                    <div class="flex items-start gap-4">
-                        <i class="fas fa-file-pdf text-green-400 text-2xl mt-1"></i>
-                        <div>
-                            <h3 class="text-lg font-bold mb-2">Report Generation</h3>
-                            <p class="text-sm text-slate-500">Automatically create PDF reports with all analysis, charts, and insights in professional format</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="glass p-8 rounded-3xl border-l-4 border-blue-500">
-                    <div class="flex items-start gap-4">
-                        <i class="fas fa-database text-blue-400 text-2xl mt-1"></i>
-                        <div>
-                            <h3 class="text-lg font-bold mb-2">Database Support</h3>
-                            <p class="text-sm text-slate-500">Connect directly to SQL databases, analyze data without downloading files first</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="team" class="text-center pt-10 border-t border-slate-900">
-            <h2 class="text-[10px] font-black text-slate-600 uppercase tracking-[0.5em] mb-12">Academic Credits</h2>
+        <!-- TEAM -->
+        <section id="team" class="text-center border-t border-slate-900" style="padding-top:2.5rem">
+            <h2 class="text-slate-600 font-black uppercase mb-12" style="font-size:10px;letter-spacing:0.5em">Academic Credits</h2>
             <div class="flex flex-wrap justify-center gap-10">
-                <div class="glass px-12 py-8 rounded-[2rem] border-b-4 border-blue-600">
-                    <p class="text-[9px] font-bold text-blue-500 mb-2 uppercase tracking-widest">Project Guide</p>
+                <div class="glass px-12 py-8 rounded-3xl border-b-4 border-blue-600" style="border-radius:2rem">
+                    <p class="text-blue-500 font-bold mb-2 uppercase" style="font-size:9px;letter-spacing:0.1em">Project Guide</p>
                     <p class="font-black text-xl text-slate-100">Dr. Satyabrata Roy</p>
                 </div>
-                <div class="glass px-12 py-8 rounded-[2rem] border-b-4 border-slate-700">
-                    <p class="text-[9px] font-bold text-slate-400 mb-2 uppercase tracking-widest">Team Member 1</p>
+                <div class="glass px-12 py-8 rounded-3xl border-b-4 border-slate-700" style="border-radius:2rem">
+                    <p class="text-slate-400 font-bold mb-2 uppercase" style="font-size:9px;letter-spacing:0.1em">Team Member</p>
                     <p class="font-black text-xl text-slate-100">Rishit Thamman</p>
-                    <p class="text-[10px] text-slate-500 mt-1">23FE10CSE00115</p>
+                    <p class="text-slate-500 mt-1" style="font-size:10px">23FE10CSE00115</p>
                 </div>
             </div>
         </section>
+
+        </div><!-- end space-y -->
     </main>
 
-    <footer class="py-12 text-center bg-black/40 border-t border-slate-900">
-        <p class="text-slate-600 text-[10px] font-bold tracking-[0.3em] uppercase mb-2">Manipal University Jaipur</p>
-        <p class="text-slate-500 text-[9px] font-medium tracking-[0.2em] uppercase opacity-50">Department of Computer Science &amp; Engineering • 2026</p>
+    <footer class="py-12 text-center border-t border-slate-900" style="background:rgba(0,0,0,0.4)">
+        <p class="text-slate-600 font-bold uppercase mb-2" style="font-size:10px;letter-spacing:0.3em">Manipal University Jaipur</p>
+        <p class="text-slate-500 font-medium uppercase opacity-50" style="font-size:9px;letter-spacing:0.2em">Department of Computer Science &amp; Engineering • 2026</p>
     </footer>
 
     <script>
-        // TIMER LOGIC
-        let sec = 0;
-        let timer = null;
-        
+        let sec = 0, timer = null;
         function startTimer() {
             if (timer) return;
-            console.log('Timer starting...');
             timer = setInterval(() => {
                 sec++;
-                let m = Math.floor(sec / 60);
-                let s = sec % 60;
-                const displayEl = document.getElementById('displayTime');
-                const containerEl = document.getElementById('timerContainer');
-                const iconEl = document.getElementById('timerIcon');
-                
-                if (displayEl) {
-                    displayEl.innerText = `${m.toString().padStart(2, '0')}:${s.toString().padStart(2, '0')}`;
-                }
-                
+                let m = Math.floor(sec / 60), s = sec % 60;
+                const d = document.getElementById('displayTime');
+                const c = document.getElementById('timerContainer');
+                const ic = document.getElementById('timerIcon');
+                if (d) d.innerText = `${String(m).padStart(2,'0')}:${String(s).padStart(2,'0')}`;
                 if (sec >= 480 && sec < 600) {
-                    if (containerEl) containerEl.classList.add('timer-warning');
-                    if (iconEl) iconEl.classList.replace('fa-hourglass-start', 'fa-hourglass-half');
+                    c && c.classList.add('timer-warning');
+                    ic && ic.className.replace('fa-hourglass-start','fa-hourglass-half');
                 } else if (sec >= 600) {
                     clearInterval(timer);
-                    if (containerEl) containerEl.classList.replace('timer-warning', 'timer-stop');
-                    if (displayEl) displayEl.innerText = "10:00";
-                    if (iconEl) iconEl.classList.replace('fa-hourglass-half', 'fa-hourglass-end');
+                    c && c.classList.replace('timer-warning','timer-stop');
+                    if (d) d.innerText = "10:00";
                 }
             }, 1000);
         }
-        
-        if (document.readyState === 'loading') {
-            document.addEventListener('DOMContentLoaded', startTimer);
-        } else {
-            startTimer();
-        }
+        document.readyState === 'loading' ? document.addEventListener('DOMContentLoaded', startTimer) : startTimer();
     </script>
-
-</body></html>
+</body>
+</html>

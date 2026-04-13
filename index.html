@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AutoDS Terminal v2.0 | PBL 2026</title>
+    <title>AutoDS v2.0 | PBL 2026</title>
     <script src="https://cdn.tailwindcss.com/"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
@@ -51,10 +51,10 @@
         <section class="text-center">
             <div class="inline-block px-4 py-1 border border-slate-800 rounded-full text-slate-500 font-mono mb-6 uppercase" style="font-size:10px;letter-spacing:0.1em">B.Tech Minor Project — 2026</div>
             <h1 class="font-extrabold mb-8 uppercase leading-tight" style="font-size:clamp(3rem,8vw,5rem)">
-                <span class="gradient-text">AutoDS</span> <span class="text-white" style="font-size:clamp(1.5rem,4vw,2.5rem);display:block;margin-top:0.25rem">Terminal v2.0</span>
+                <span class="gradient-text">AutoDS</span> <span class="text-white" style="font-size:clamp(1.5rem,4vw,2.5rem);display:block;margin-top:0.25rem">v2.0</span>
             </h1>
             <p class="text-slate-400 max-w-2xl mx-auto italic text-lg leading-relaxed border-l-2 border-blue-500 pl-6 text-left" style="border-color:rgba(59,130,246,0.3)">
-                "A Bloomberg-inspired, local-first AI data intelligence terminal — drop in any CSV and get complete analysis, drift detection, ML training, and autonomous AI insights. High performance."
+                "A Bloomberg-inspired, local-first AI data intelligence platform — drop in any CSV and get complete analysis, drift detection, ML training, and autonomous AI insights. High performance."
             </p>
         </section>
 
@@ -63,7 +63,7 @@
             <div class="glass p-10 rounded-3xl flex flex-col justify-center border-l-4 border-blue-600" style="border-radius:2.5rem">
                 <h2 class="text-3xl font-extrabold mb-6">Problem Statement</h2>
                 <p class="text-slate-400 leading-relaxed text-justify">
-                    Imagine you get a new dataset. Before any real work begins, you spend hours just <em>understanding</em> it — writing code to check for missing values, plotting distributions, testing correlations. Then if you train a model and it fails, you debug that manually too. AutoDS eliminates all of that repetitive groundwork in one terminal.
+                    Imagine you get a new dataset. Before any real work begins, you spend hours just <em>understanding</em> it — writing code to check for missing values, plotting distributions, testing correlations. Then if you train a model and it fails, you debug that manually too. AutoDS eliminates all of that repetitive groundwork in one place.
                 </p>
             </div>
             <div style="display:flex;flex-direction:column;gap:1.5rem">
@@ -90,12 +90,12 @@
                 <div class="glass p-8 rounded-3xl text-center">
                     <i class="fas fa-microchip text-purple-500 text-3xl mb-4"></i>
                     <h3 class="font-bold mb-2 uppercase text-xs" style="letter-spacing:0.1em">Architecture</h3>
-                    <p class="text-sm text-slate-500">Four-layer pipeline: React Terminal UI → FastAPI REST/WebSocket → NVIDIA Qwen2.5 agent → MCP Python tool registry. Each layer has one job and communicates cleanly.</p>
+                    <p class="text-sm text-slate-500">Four-layer pipeline: React Dashboard UI → FastAPI REST/WebSocket → NVIDIA Qwen2.5 agent → MCP Python tool registry. Each layer has one job and communicates cleanly.</p>
                 </div>
                 <div class="glass p-8 rounded-3xl text-center" style="border: 2px solid rgba(34,197,94,0.2); background:rgba(34,197,94,0.05)">
                     <i class="fas fa-chart-bar text-green-500 text-3xl mb-4"></i>
                     <h3 class="font-bold mb-2 uppercase text-xs text-green-400" style="letter-spacing:0.1em">Output</h3>
-                    <p class="text-sm text-slate-500">Interactive charts, statistical tables, Trust Score, model comparisons, drift alerts, and auto-generated Pandas cleaning scripts — all live in the terminal.</p>
+                    <p class="text-sm text-slate-500">Interactive charts, statistical tables, Trust Score, model comparisons, drift alerts, and auto-generated Pandas cleaning scripts — all live in the dashboard.</p>
                 </div>
             </div>
         </section>
@@ -107,9 +107,9 @@
                 <div class="glass p-8 rounded-3xl border-l-4 border-blue-500">
                     <div class="flex items-center gap-3 mb-4">
                         <i class="fas fa-desktop text-blue-500 text-2xl"></i>
-                        <h3 class="font-bold uppercase text-xs" style="letter-spacing:0.1em">UI Layer — React Terminal</h3>
+                        <h3 class="font-bold uppercase text-xs" style="letter-spacing:0.1em">UI Layer — React Dashboard</h3>
                     </div>
-                    <p class="text-sm text-slate-500">Bloomberg-aesthetic terminal. Dense information layout, zero decorative whitespace. JetBrains Mono + Inter typography. Color-coded output: <span class="text-cyan-400">cyan for data</span>, <span class="text-amber-400">amber for warnings</span>, <span class="text-green-400">green for passing</span>, <span class="text-red-400">red for failures</span>.</p>
+                    <p class="text-sm text-slate-500">Bloomberg-inspired UI. Dense information layout, zero decorative whitespace. JetBrains Mono + Inter typography. Color-coded output: <span class="text-cyan-400">cyan for data</span>, <span class="text-amber-400">amber for warnings</span>, <span class="text-green-400">green for passing</span>, <span class="text-red-400">red for failures</span>.</p>
                 </div>
                 <div class="glass p-8 rounded-3xl border-l-4 border-purple-500">
                     <div class="flex items-center gap-3 mb-4">
@@ -155,7 +155,7 @@
                     </div>
                     <div class="text-center">
                         <div class="glass p-4 rounded-2xl mb-2"><i class="fas fa-chart-line text-amber-400 text-xl"></i></div>
-                        <p class="text-xs text-slate-400 font-bold uppercase" style="letter-spacing:0.05em">Terminal</p>
+                        <p class="text-xs text-slate-400 font-bold uppercase" style="letter-spacing:0.05em">Dashboard</p>
                         <p class="text-xs text-slate-600 mt-1">Renders charts, stats, scores live</p>
                     </div>
                 </div>
@@ -184,7 +184,7 @@
                 <div class="glass p-6 rounded-3xl text-center">
                     <div class="text-4xl font-black text-amber-400 mb-2">4</div>
                     <h3 class="font-bold mb-3 uppercase text-xs" style="letter-spacing:0.1em">Results Appear</h3>
-                    <p class="text-sm text-slate-500">Stats, charts, Trust Score, model rankings, drift alerts — all live in the terminal.</p>
+                    <p class="text-sm text-slate-500">Stats, charts, Trust Score, model rankings, drift alerts — all live in the dashboard.</p>
                 </div>
             </div>
             <!-- Example Flow -->
@@ -334,7 +334,7 @@
                 <div class="glass p-8 rounded-3xl">
                     <h3 class="text-green-400 font-bold uppercase text-xs mb-4" style="letter-spacing:0.1em">Frontend</h3>
                     <div style="display:flex;flex-direction:column;gap:0.75rem;font-size:0.875rem;color:rgb(100,116,139)">
-                        <div class="flex items-center gap-2"><i class="fab fa-react text-blue-400"></i><span>React + Vite — Bloomberg terminal UI</span></div>
+                        <div class="flex items-center gap-2"><i class="fab fa-react text-blue-400"></i><span>React + Vite — Bloomberg-style dashboard UI</span></div>
                         <div class="flex items-center gap-2"><i class="fas fa-chart-line text-green-500"></i><span>Recharts + D3.js — interactive visualizations</span></div>
                         <div class="flex items-center gap-2"><i class="fas fa-plug text-purple-500"></i><span>WebSocket — real-time result streaming</span></div>
                     </div>
@@ -356,10 +356,10 @@
             <div class="glass p-8 rounded-3xl border-b-4 border-green-500">
                 <div class="flex items-center gap-3 mb-4">
                     <i class="fas fa-check-circle text-green-400 text-2xl"></i>
-                    <h3 class="font-bold uppercase text-xs" style="letter-spacing:0.1em">Completed ✅</h3>
+                    <h3 class="font-bold uppercase text-xs" style="letter-spacing:0.1em">Completed</h3>
                 </div>
                 <div style="display:flex;flex-direction:column;gap:0.5rem;font-size:0.875rem;color:rgb(100,116,139)">
-                    <div>• Full React terminal UI</div>
+                    <div>• Full React dashboard UI</div>
                     <div>• FastAPI + WebSocket backend</div>
                     <div>• All MCP analysis tools</div>
                     <div>• NVIDIA Qwen2.5 agent integration</div>
@@ -374,7 +374,7 @@
             <div class="glass p-8 rounded-3xl border-b-4 border-blue-500">
                 <div class="flex items-center gap-3 mb-4">
                     <i class="fas fa-spinner text-blue-400 text-2xl"></i>
-                    <h3 class="font-bold uppercase text-xs" style="letter-spacing:0.1em">In Progress 🔄</h3>
+                    <h3 class="font-bold uppercase text-xs" style="letter-spacing:0.1em">In Progress</h3>
                 </div>
                 <div style="display:flex;flex-direction:column;gap:0.5rem;font-size:0.875rem;color:rgb(100,116,139)">
                     <div>• UI performance tuning</div>
@@ -385,7 +385,7 @@
             <div class="glass p-8 rounded-3xl border-b-4 border-purple-500">
                 <div class="flex items-center gap-3 mb-4">
                     <i class="fas fa-clock text-purple-400 text-2xl"></i>
-                    <h3 class="font-bold uppercase text-xs" style="letter-spacing:0.1em">Upcoming 🕐</h3>
+                    <h3 class="font-bold uppercase text-xs" style="letter-spacing:0.1em">Upcoming</h3>
                 </div>
                 <div style="display:flex;flex-direction:column;gap:0.5rem;font-size:0.875rem;color:rgb(100,116,139)">
                     <div>• PDF / HTML report export</div>
@@ -401,7 +401,7 @@
             <h2 class="text-3xl font-black mb-12 text-center uppercase" style="letter-spacing:-0.025em">Use <span class="text-blue-500">Cases</span></h2>
             <div class="grid md:grid-cols-2 gap-8">
                 <div class="glass p-8 rounded-3xl border-l-4 border-blue-500">
-                    <h3 class="text-xl font-bold mb-4">🎓 For Students</h3>
+                    <h3 class="text-xl font-bold mb-4">For Students</h3>
                     <div style="display:flex;flex-direction:column;gap:0.5rem;font-size:0.875rem;color:rgb(100,116,139)">
                         <div class="flex items-start gap-2"><i class="fas fa-check text-blue-400 mt-1"></i><span>Profile assignment datasets in seconds</span></div>
                         <div class="flex items-start gap-2"><i class="fas fa-check text-blue-400 mt-1"></i><span>Get model comparisons and charts without writing any code</span></div>
@@ -409,7 +409,7 @@
                     </div>
                 </div>
                 <div class="glass p-8 rounded-3xl border-l-4 border-purple-500">
-                    <h3 class="text-xl font-bold mb-4">🔬 For Researchers</h3>
+                    <h3 class="text-xl font-bold mb-4">For Researchers</h3>
                     <div style="display:flex;flex-direction:column;gap:0.5rem;font-size:0.875rem;color:rgb(100,116,139)">
                         <div class="flex items-start gap-2"><i class="fas fa-check text-purple-400 mt-1"></i><span>Enforce data contracts to validate experiment data</span></div>
                         <div class="flex items-start gap-2"><i class="fas fa-check text-purple-400 mt-1"></i><span>Detect drift between data collection rounds using KL Divergence</span></div>
@@ -417,7 +417,7 @@
                     </div>
                 </div>
                 <div class="glass p-8 rounded-3xl border-l-4 border-green-500">
-                    <h3 class="text-xl font-bold mb-4">🏗️ For Data Engineers</h3>
+                    <h3 class="text-xl font-bold mb-4">For Data Engineers</h3>
                     <div style="display:flex;flex-direction:column;gap:0.5rem;font-size:0.875rem;color:rgb(100,116,139)">
                         <div class="flex items-start gap-2"><i class="fas fa-check text-green-400 mt-1"></i><span>Instantly check if two datasets are join-compatible</span></div>
                         <div class="flex items-start gap-2"><i class="fas fa-check text-green-400 mt-1"></i><span>Get exact forecasts of row loss before running expensive queries</span></div>
@@ -425,7 +425,7 @@
                     </div>
                 </div>
                 <div class="glass p-8 rounded-3xl border-l-4 border-amber-500">
-                    <h3 class="text-xl font-bold mb-4">📊 For Data Scientists</h3>
+                    <h3 class="text-xl font-bold mb-4">For Data Scientists</h3>
                     <div style="display:flex;flex-direction:column;gap:0.5rem;font-size:0.875rem;color:rgb(100,116,139)">
                         <div class="flex items-start gap-2"><i class="fas fa-check text-amber-400 mt-1"></i><span>Skip boilerplate EDA — get full profiling in seconds</span></div>
                         <div class="flex items-start gap-2"><i class="fas fa-check text-amber-400 mt-1"></i><span>Get model failure root-cause analysis with T-test evidence</span></div>
@@ -446,7 +446,7 @@
                     <div class="flex items-start gap-2"><span class="text-blue-400">•</span><span>Building a reliable agentic loop where Qwen2.5 consistently calls the correct tool with the right parameters</span></div>
                     <div class="flex items-start gap-2"><span class="text-blue-400">•</span><span>Implementing KL Divergence-based drift detection that works on real-world noisy datasets</span></div>
                     <div class="flex items-start gap-2"><span class="text-blue-400">•</span><span>Making the Trust Score formula fair — balancing violation severity, row count, and constraint type</span></div>
-                    <div class="flex items-start gap-2"><span class="text-blue-400">•</span><span>Keeping the terminal UI performant while streaming multiple WebSocket updates simultaneously</span></div>
+                    <div class="flex items-start gap-2"><span class="text-blue-400">•</span><span>Keeping the dashboard UI performant while streaming multiple WebSocket updates simultaneously</span></div>
                 </div>
             </div>
             <div class="glass p-10 rounded-3xl border-l-4 border-green-600" style="border-radius:2.5rem">
